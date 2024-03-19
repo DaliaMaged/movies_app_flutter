@@ -48,9 +48,7 @@ class _InitScreenState extends State<InitScreen> {
           ],
         ),
       ),
-      body: Container(
-          padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-          child: screens[selectedIndex]),
+      body:  screens[selectedIndex]
     );
   }
 

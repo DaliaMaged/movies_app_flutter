@@ -3,6 +3,7 @@ import 'package:movies_app/MoviesAppTheme.dart';
 import 'package:movies_app/browse/browse_screen.dart';
 import 'package:movies_app/home/home_screen.dart';
 import 'package:movies_app/init_screen.dart';
+import 'package:movies_app/movie-details/MovieDetailsScreen.dart';
 import 'package:movies_app/search/search_screen.dart';
 import 'package:movies_app/watchlist/watchlist_screen.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.screenTitle : (context) => HomeScreen(),
         BrowseScreen.screenTitle : (context) => BrowseScreen(),
         WatchlistScreen.screenTitle : (context) => WatchlistScreen(),
+        MovieDetailsScreen.screenTitle : (context) => MovieDetailsScreen(),
       },
     );
   }

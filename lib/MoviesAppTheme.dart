@@ -8,6 +8,7 @@ class MoviesAppTheme{
   static Color bottomNavGreyColor = Color(0xff1A1A1A);
   static Color musturedColor = Color(0xffF7B539);
   static Color blackColor = Color(0xff000000);
+  static Color darkGreyColor = Color(0xff282A28);
   static ThemeData moviesAppTheme = ThemeData(
     canvasColor: bottomNavGreyColor,
     scaffoldBackgroundColor:blackColor ,
