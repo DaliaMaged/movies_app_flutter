@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:movies_app/Models/MovieDetailsResponse.dart';
+import 'package:movies_app/Models/SimilarMovies.dart';
 import 'package:movies_app/Models/Topratedresponse.dart';
 import 'package:movies_app/Models/UpComingResponse.dart';
 import 'package:movies_app/api-constants/ApiConstants.dart';
@@ -58,17 +59,36 @@ class ApiManager{
    }
   }
   static Future<MovieDetailsResponse> getMovieDetails ({required String movie_id}) async {
-    var url = Uri.https(ApiConstants.baseUrl,ApiConstants.movieDetailsEP,{
-      "movie_id":movie_id,
+    var url = Uri.https(ApiConstants.baseUrl,"${ApiConstants.movieDetailsEP}${movie_id}",{
       "language":"en-US",
       "page":"1"
     });
+    print(url);
    try{
+     print("api mnger dettt");
      var responseString = await http.get(url,headers: {
        HttpHeaders.authorizationHeader:ApiConstants.apiToken
      });
      var responseFromJson = jsonDecode(responseString.body);
      return MovieDetailsResponse.fromJson(responseFromJson);
+   }catch(e){
+     print("$e");
+     throw e;
+   }
+  }
+  static Future<SimilarMovies> getMovieSimilar ({required String movie_id}) async {
+    var url = Uri.https(ApiConstants.baseUrl,"${ApiConstants.movieDetailsEP}${movie_id}/similar",{
+      "language":"en-US",
+      "page":"1"
+    });
+    print(url);
+   try{
+     print("api mnger dettt");
+     var responseString = await http.get(url,headers: {
+       HttpHeaders.authorizationHeader:ApiConstants.apiToken
+     });
+     var responseFromJson = jsonDecode(responseString.body);
+     return SimilarMovies.fromJson(responseFromJson);
    }catch(e){
      print("$e");
      throw e;

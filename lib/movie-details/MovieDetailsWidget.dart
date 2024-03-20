@@ -18,9 +18,12 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CachedNetworkImage(
-          imageUrl: widget.movieDetailsResponse!.posterPath!,
+          // height: MediaQuery.of(context).size.height*0.2,
+          // width: double.infinity,
+          imageUrl: 'https://image.tmdb.org/t/p/original${widget.movieDetailsResponse!.backdropPath!}',
           errorWidget: (context, _, __) => Icon(Icons.error_outline),
           placeholder: (context, url) => Center(
             child: Center(
@@ -35,13 +38,14 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
             child: Text(
               "${widget.movieDetailsResponse!.title}",
               style: MoviesAppTheme.moviesAppTheme.textTheme.titleLarge,
-            )),
+            )
+        ),
         Row(
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.2,
               child: CachedNetworkImage(
-                imageUrl: widget.movieDetailsResponse!.posterPath!,
+                imageUrl:'https://image.tmdb.org/t/p/original${widget.movieDetailsResponse!.posterPath!}',
                 errorWidget: (context, _, __) => Icon(Icons.error_outline),
                 placeholder: (context, url) => Center(
                   child: CircularProgressIndicator(
@@ -51,16 +55,28 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
               ),
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ListView.builder(
-                  itemBuilder: (context, int) => Text(
-                    widget.movieDetailsResponse!.genres![int].name!,
-                    style: MoviesAppTheme.moviesAppTheme.textTheme.titleSmall,
+                Container(
+                   height: MediaQuery.of(context).size.height*0.07,
+                   width: MediaQuery.of(context).size.width*0.5,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, int) => Container(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        widget.movieDetailsResponse!.genres![int].name!,
+                        style: MoviesAppTheme.moviesAppTheme.textTheme.titleSmall,
+                      ),
+                    ),
                   ),
                 ),
-                Text(
-                  widget.movieDetailsResponse!.overview!,
-                  style: MoviesAppTheme.moviesAppTheme.textTheme.titleSmall,
+                Container(
+                  padding: EdgeInsets.all(12),
+                  child: Text(
+                    widget.movieDetailsResponse!.title!,
+                    style: MoviesAppTheme.moviesAppTheme.textTheme.titleSmall,
+                  ),
                 ),
                 Row(
                   children: [
@@ -76,16 +92,10 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
                     ),
                   ],
                 ),
-                Text(
-                  "More Like This",
-                  style: MoviesAppTheme.moviesAppTheme.textTheme.titleSmall
-                      ?.copyWith(color: MoviesAppTheme.whiteColor),
-                ),
-                //todo "More Like This" list
               ],
             )
           ],
-        )
+        ),
       ],
     );
   }
