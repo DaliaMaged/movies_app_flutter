@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/movie-details/MovieDetailsViewmodel.dart';
-import 'package:movies_app/movie-details/MovieDetailsWidget.dart';
-import 'package:movies_app/movie-details/similar-movies-widget.dart';
+import 'package:movies_app/home/movie-details/similar-movies-widget.dart';
+
 import 'package:provider/provider.dart';
 
-import '../MoviesAppTheme.dart';
+import '../../MoviesAppTheme.dart';
+import 'MovieDetailsViewmodel.dart';
+import 'MovieDetailsWidget.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   static String screenTitle = "movieDetailsScreen";

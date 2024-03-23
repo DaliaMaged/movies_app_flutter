@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/Models/MovieDetailsResponse.dart';
 import 'package:movies_app/Models/SimilarMovies.dart';
 
-import '../api-constants/api-manager.dart';
+import '../../api-constants/api-manager.dart';
+
 
 class MovieDetailsViewmodel extends ChangeNotifier{
   MovieDetailsResponse? movieDetailsResponse;

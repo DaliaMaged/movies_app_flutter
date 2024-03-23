@@ -5,4 +5,5 @@ class ApiConstants{
   static String upcomingEP = "/3/movie/upcoming";
   static String topRatedEP = "/3/movie/top_rated";
   static String movieDetailsEP = "/3/movie/";
+  static String searchMoviesEP = "/3/search/movie";
 }

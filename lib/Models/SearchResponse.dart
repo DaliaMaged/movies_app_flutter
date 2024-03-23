@@ -1,31 +1,32 @@
 
 
-class SimilarMovies {
-  SimilarMovies({
+class SearchResponse {
+  SearchResponse({
     this.success,
     this.status_message,
-      this.page, 
+    this.page,
       this.results, 
       this.totalPages, 
       this.totalResults,});
 
-  SimilarMovies.fromJson(dynamic json) {
+  SearchResponse.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(SimilarMoviesResults.fromJson(v));
+        results?.add(SearchResults.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
   }
-  bool? success;
-  String? status_message;
   num? page;
-  List<SimilarMoviesResults>? results;
+  List<SearchResults>? results;
   num? totalPages;
   num? totalResults;
+  bool? success;
+  String? status_message;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -40,8 +41,9 @@ class SimilarMovies {
 
 }
 
-class SimilarMoviesResults {
-  SimilarMoviesResults({
+
+class SearchResults {
+  SearchResults({
       this.adult, 
       this.backdropPath, 
       this.genreIds, 
@@ -57,10 +59,15 @@ class SimilarMoviesResults {
       this.voteAverage, 
       this.voteCount,});
 
-  SimilarMoviesResults.fromJson(dynamic json) {
+  SearchResults.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
+    // if (json['genre_ids'] != null) {
+    //   genreIds = [];
+    //   json['genre_ids'].forEach((v) {
+    //     genreIds?.add(SearchResults.fromJson(v));
+    //   });
+    // }
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -73,10 +80,9 @@ class SimilarMoviesResults {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
-
   bool? adult;
-  String? backdropPath;
-  List<num>? genreIds;
+  dynamic backdropPath;
+  List<dynamic>? genreIds;
   num? id;
   String? originalLanguage;
   String? originalTitle;
@@ -93,7 +99,9 @@ class SimilarMoviesResults {
     final map = <String, dynamic>{};
     map['adult'] = adult;
     map['backdrop_path'] = backdropPath;
-    map['genre_ids'] = genreIds;
+    // if (genreIds != null) {
+    //   map['genre_ids'] = genreIds?.map((v) => v.toJson()).toList();
+    // }
     map['id'] = id;
     map['original_language'] = originalLanguage;
     map['original_title'] = originalTitle;
