@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/Models/MovieDetailsResponse.dart';
 
-import '../MoviesAppTheme.dart';
+import '../../MoviesAppTheme.dart';
 
 class MovieDetailsWidget extends StatefulWidget {
   MovieDetailsResponse? movieDetailsResponse;

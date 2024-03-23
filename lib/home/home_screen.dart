@@ -6,8 +6,9 @@ import 'package:movies_app/MoviesAppTheme.dart';
 import 'package:movies_app/home/HomeScreenViewmodel.dart';
 import 'package:movies_app/home/recommended-widget.dart';
 import 'package:movies_app/home/up-coming-widget.dart';
-import 'package:movies_app/movie-details/MovieDetailsScreen.dart';
 import 'package:provider/provider.dart';
+
+import 'movie-details/MovieDetailsScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   static String screenTitle = "HomeScreen";
