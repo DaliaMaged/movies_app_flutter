@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/MoviesAppTheme.dart';
-import 'package:movies_app/browse/browse_screen.dart';
+import 'package:movies_app/browse/categories_screen.dart';
+import 'package:movies_app/browse/category_details_screen.dart';
 import 'package:movies_app/home/home_screen.dart';
 import 'package:movies_app/init_screen.dart';
 import 'package:movies_app/search/search_screen.dart';
@@ -27,9 +28,10 @@ class MyApp extends StatelessWidget {
         InitScreen.screenTitle : (context) => InitScreen(),
         SearchScreen.screenTitle : (context) => SearchScreen(),
         HomeScreen.screenTitle : (context) => HomeScreen(),
-        BrowseScreen.screenTitle : (context) => BrowseScreen(),
+        CategoriesScreen.screenTitle : (context) => CategoriesScreen(),
         WatchlistScreen.screenTitle : (context) => WatchlistScreen(),
         MovieDetailsScreen.screenTitle : (context) => MovieDetailsScreen(),
+        CategoryDetailsScreen.screenTitle : (context) => CategoryDetailsScreen(),
       },
     );
   }

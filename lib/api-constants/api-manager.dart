@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:movies_app/Models/DiscoverResponse.dart';
+import 'package:movies_app/Models/GenersResponse.dart';
 import 'package:movies_app/Models/MovieDetailsResponse.dart';
 import 'package:movies_app/Models/SearchResponse.dart';
 import 'package:movies_app/Models/SimilarMovies.dart';
@@ -109,6 +111,44 @@ class ApiManager{
      });
      var responseFromJson = jsonDecode(responseString.body);
      return SimilarMovies.fromJson(responseFromJson);
+   }catch(e){
+     print("$e");
+     throw e;
+   }
+  }
+  static Future<DiscoverResponse> getMoviesByGenre ({required String genre_id}) async {
+    var url = Uri.https(ApiConstants.baseUrl,ApiConstants.searchDiscoverEP,{
+      "language":"en-US",
+      "page":"1",
+      "include_adult":"true",
+    "include_video":"false",
+    "sort_by":"title.asc",
+    "with_genres":genre_id,
+    });
+    print(url);
+   try{
+     print("api mnger dettt");
+     var responseString = await http.get(url,headers: {
+       HttpHeaders.authorizationHeader:ApiConstants.apiToken
+     });
+     var responseFromJson = jsonDecode(responseString.body);
+     return DiscoverResponse.fromJson(responseFromJson);
+   }catch(e){
+     print("$e");
+     throw e;
+   }
+  }
+  static Future<GenersResponse> getGenres () async {
+    var url = Uri.https(ApiConstants.baseUrl,ApiConstants.genresMoviesEP,{
+      "language":"en-US",
+    });
+    print(url);
+   try{
+     var responseString = await http.get(url,headers: {
+       HttpHeaders.authorizationHeader:ApiConstants.apiToken
+     });
+     var responseFromJson = jsonDecode(responseString.body);
+     return GenersResponse.fromJson(responseFromJson);
    }catch(e){
      print("$e");
      throw e;

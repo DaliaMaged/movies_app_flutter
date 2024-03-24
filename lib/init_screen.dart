@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/MoviesAppTheme.dart';
-import 'package:movies_app/browse/browse_screen.dart';
+import 'package:movies_app/browse/categories_screen.dart';
 import 'package:movies_app/home/home_screen.dart';
 import 'package:movies_app/search/search_screen.dart';
 import 'package:movies_app/watchlist/watchlist_screen.dart';
@@ -55,7 +55,7 @@ class _InitScreenState extends State<InitScreen> {
   List<Widget> screens = [
     HomeScreen(),
     SearchScreen(),
-    BrowseScreen(),
+    CategoriesScreen(),
     WatchlistScreen()
   ];
 }
