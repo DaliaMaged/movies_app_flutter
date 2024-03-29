@@ -22,7 +22,6 @@ class _SearchScreenState extends State<SearchScreen> {
       create: (BuildContext context) => viewmodel,
       child: Column(
         children: [
-          //todo search bar
           Container(
             child: TextField(
               style: MoviesAppTheme
@@ -76,10 +75,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               } else if (state is SearchLoadingState) {
                 return Center(
-                  child: Image.asset("assets/nomovies.png"),
+                  child: Image.asset("aassets/others/nomovies_ic.png"),
                 );
               }
-              return Center(child: Image.asset("assets/nomovies_ic.png"));
+              return Center(child: Image.asset("assets/others/nomovies_ic.png"));
             },
             bloc: viewmodel,
           )
