@@ -5,6 +5,7 @@ import 'package:movies_app/home/home_screen.dart';
 import 'package:movies_app/search/search_screen.dart';
 import 'package:movies_app/watchlist/watchlist_screen.dart';
 
+
 class InitScreen extends StatefulWidget {
   static String screenTitle = "initScreen";
 
