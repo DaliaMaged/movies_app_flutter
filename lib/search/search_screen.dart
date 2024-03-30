@@ -23,6 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Column(
         children: [
           Container(
+            padding: EdgeInsets.all(16),
             child: TextField(
               style: MoviesAppTheme
                   .moviesAppTheme.textTheme.titleMedium,

@@ -18,14 +18,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  ScrollController _scrollControllerUpcom = ScrollController();
+  ScrollController _scrollControllerPop = ScrollController();
+ // ScrollController _scrollControllerTop = ScrollController();
   HomeScreenViewmodel viewmodel = HomeScreenViewmodel();
 
   @override
   void initState() {
+    _scrollControllerUpcom.addListener(endScrollUpCom);
+    _scrollControllerPop .addListener(endScrollPop);
+    //  _scrollController.addListener(endScroll);
     super.initState();
     viewmodel.getPopMovies();
     viewmodel.getUpcomingMovies();
     viewmodel.getTopRatedMovies();
+
   }
 
   @override
@@ -63,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else {
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.30,
                   child: CarouselSlider(
                     items: viewmodel.popMovies!.results!.map((index) {
                       return Builder(
@@ -83,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(20),
                                   child: Container(
                                     height:
-                                        MediaQuery.of(context).size.height * 0.25,
+                                        MediaQuery.of(context).size.height * 0.20,
                                     child: CachedNetworkImage(
                                       width: double.infinity,
                                       fit: BoxFit.fitWidth,
@@ -139,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Consumer<HomeScreenViewmodel>(builder: (context, viewmodel, child) {
-              if (viewmodel.upcomingMovies == null) {
+              if (viewmodel.upcomingMoviesResponse == null) {
                 return Center(
                   child: CircularProgressIndicator(
                     backgroundColor: MoviesAppTheme.musturedColor,
@@ -165,22 +172,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               } else {
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: MediaQuery.of(context).size.height * 0.19,
                   color: MoviesAppTheme.darkGreyColor,
                   child: ListView.builder(
-                      itemBuilder: (context, index) => InkWell(
+
+                    controller: _scrollControllerUpcom,
+                    itemBuilder: (context, index) => InkWell(
                         onTap: (){
                           Navigator.pushNamed(context, MovieDetailsScreen.screenTitle,
                           arguments: {
-                            "movie_id":"${viewmodel.upcomingMovies!.results![index].id}"
+                            "movie_id":"${viewmodel.upcomingMoviesList![index].id}"
                           }
                           );
                         },
                         child: UpComingWidget(
-                              result: viewmodel.upcomingMovies!.results![index],
+                              result: viewmodel.upcomingMoviesList![index],
                             ),
                       ),
-                    itemCount: viewmodel.upcomingMovies!.results!.length,
+                    itemCount: viewmodel.upcomingMoviesList!.length,
                     scrollDirection: Axis.horizontal,
                   ),
                 );
@@ -245,5 +254,18 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+
+  }
+  void endScrollUpCom(){
+    if(_scrollControllerUpcom.position.pixels >= _scrollControllerUpcom.position.maxScrollExtent){
+      viewmodel.getUpcomingMovies();
+    }
+
+  }
+  void endScrollPop(){
+    if(_scrollControllerPop.position.pixels >= _scrollControllerPop.position.maxScrollExtent){
+      viewmodel.getPopMovies();
+    }
+
   }
 }

@@ -14,12 +14,13 @@ import '../Models/PopularMovies.dart';
 import 'package:http/http.dart' as http;
 
 class ApiManager{
-  static Future<PopularMovies> getPopularMovies () async {
+  static Future<PopularMovies> getPopularMovies ({required int page}) async {
     var url = Uri.https(ApiConstants.baseUrl,ApiConstants.popularEP,{
       "language":"en-US",
-      "page":"1"
+      "page":"$page"
     });
    try{
+     print("$url =====");
      var responseString = await http.get(url,headers: {
        HttpHeaders.authorizationHeader:ApiConstants.apiToken
      });
@@ -29,12 +30,13 @@ class ApiManager{
      throw e;
    }
   }
-  static Future<UpComingResponse> getUpcomingMovies () async {
+  static Future<UpComingResponse> getUpcomingMovies ({required int page}) async {
     var url = Uri.https(ApiConstants.baseUrl,ApiConstants.upcomingEP,{
       "language":"en-US",
-      "page":"1"
+      "page":"$page"
     });
    try{
+
      var responseString = await http.get(url,headers: {
        HttpHeaders.authorizationHeader:ApiConstants.apiToken
      });
